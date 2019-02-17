@@ -44,14 +44,12 @@ class App extends Component {
       padding: '5px',
       cursor: 'pointer'
     }
-    return (
-      <div className="App">
-        <h1>Hi, I am a React App</h1>
-        <button 
-          style = {buttonStyle}
-          onClick = {this.togglePersons}>Switch Name</button>
-        { this.state.showPerson ?
-          <div>  
+
+    let personGroup = null;
+
+    if(this.state.showPerson){
+      personGroup = (
+        <div>  
             <Person 
               name={this.state.persons[0].name} 
               age={this.state.persons[0].age} />
@@ -63,8 +61,16 @@ class App extends Component {
               changed={this.nameChangedHandler}>
               My Hobbies : Football
             </Person>
-          </div> : null
-        }
+          </div>
+      )
+    }
+    return (
+      <div className="App">
+        <h1>Hi, I am a React App</h1>
+        <button 
+          style = {buttonStyle}
+          onClick = {this.togglePersons}>Switch Person</button>
+        {personGroup}
       </div>
     );
   }
