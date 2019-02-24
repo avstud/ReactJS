@@ -1,12 +1,13 @@
 import React, { Component } from 'react';
-import './App.css';
+import AppStyle from './App.css';
 import Person from './Person/Person';
 class App extends Component {
 
   state = {
     persons: [
       { id: "101", name: "Ashwini", age: "25" },
-      { id: "102", name: "Krishna", age: "21" }
+      { id: "102", name: "Krishna", age: "21" },
+      { id: "103", name: "Kanchan", age: "23" }
     ],
 
     showPerson :false
@@ -43,18 +44,8 @@ class App extends Component {
 
 
   render() {
-
-    const buttonStyle = {
-      backgroundColor : 'green',
-      font: 'inherit',  
-      border: '1px solid darkgreen',
-      padding: '5px',
-      cursor: 'pointer',
-      color: 'white'
-    }
-
     let personGroup = null;
-
+    let btnStyle = null;
     if(this.state.showPerson){
       personGroup = (
         <div>
@@ -71,24 +62,23 @@ class App extends Component {
           </div>
       );
 
-      buttonStyle.backgroundColor = 'red';
-      
+      btnStyle = AppStyle.red;
     } 
     const classes = [];
     if(this.state.persons.length <= 2){
-      classes.push('red');
+      classes.push( AppStyle.red );
     }
 
     if(this.state.persons.length <= 1){
-      classes.push('bold');
+      classes.push( AppStyle.bold );
     }
     
     return (
-      <div className="App">
+      <div className={AppStyle.App}>
         <h1>Hi, I am a React App</h1>
         <p className={classes.join(' ')}>This is really working!</p>
-        <button 
-          style = {buttonStyle}
+        <button
+          className = {btnStyle}
           onClick = {this.togglePersons}>Switch Person</button>
         {personGroup}
       </div>
