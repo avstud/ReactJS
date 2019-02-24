@@ -3,15 +3,28 @@ import AppStyle from './App.css';
 import Persons from '../components/Persons/Persons';
 import Cockpit from '../components/Cockpit/Cockpit';
 class App extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      persons: [
+        { id: "101", name: "Ashwini", age: "25" },
+        { id: "102", name: "Krishna", age: "21" },
+        { id: "103", name: "Kanchan", age: "23" }
+      ],
 
-  state = {
-    persons: [
-      { id: "101", name: "Ashwini", age: "25" },
-      { id: "102", name: "Krishna", age: "21" },
-      { id: "103", name: "Kanchan", age: "23" }
-    ],
+      showPerson: false
 
-    showPerson: false
+    }
+
+    console.log("[App.js] Inside Constructor",props);
+  }
+
+  componentWillMount(){
+    console.log("[App.js] Inside ComponentWillMount ");
+  }
+
+  componentDidMount(){
+    console.log("[App.js] Inside ComponentDidMount ");
   }
 
   deletePersonHandler = (personIndex) => {
@@ -45,6 +58,7 @@ class App extends Component {
 
 
   render() {
+    console.log("[App.js] Inside Render Method ");
     let personGroup = null;
     if (this.state.showPerson) {
       personGroup = <Persons
@@ -58,7 +72,7 @@ class App extends Component {
     return (
       <div className={AppStyle.App}>
         <Cockpit
-          appTitle = {this.props.title}
+          appTitle={this.props.title}
           showPerson={this.state.showPerson}
           persons={this.state.persons}
           toggle={this.togglePersons} />
